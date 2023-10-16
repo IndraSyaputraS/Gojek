@@ -1,8 +1,8 @@
 import React from 'react';
 import { ScrollView, StyleSheet, Text, View, Image, ImageBackground, TextInput } from 'react-native';
-import { Clock, SearchNormal1, ProfileCircle, Wallet3, CardSend, MoreCircle, Home } from 'iconsax-react-native';
+import { MessageText1, Clock, SearchNormal1, ProfileCircle, Wallet3, CardSend, MoreCircle, Home3, DiscountShape, Receipt1 } from 'iconsax-react-native';
 import { fontType, colors } from './src/theme';
-import { sprite, box, bill, more, scooter, shopping, spoon, train, car } from './src/assets/Images';
+import { sprite, box, bill, more, scooter, shopping, spoon, train, car, cutlery, fork } from './src/assets/Images';
 
 
 export default function App() {
@@ -26,7 +26,11 @@ export default function App() {
         />
         <Payment />
         <Main />
+        <History />
       </ScrollView>
+      <View style={styles.navigationbutton}>
+        <NavigationButton />
+      </View>
     </View>
   )
 }
@@ -110,7 +114,7 @@ const Main = () => {
           />
           <Text style={home.goTransitText}>GoTransit</Text>
         </View>
-        <View style={home.background}>
+        <View style={home.more}>
           <Image
             source={more}
             style={home.icon}
@@ -122,11 +126,133 @@ const Main = () => {
   );
 }
 
+const History = () => {
+  return (
+    <View style={history.container}>
+      <ScrollView
+        showsHorizontalScrollIndicator={false}
+        horizontal
+        contentContainerStyle={{ gap: 15 }}>
+        <View style={history.card}>
+          <View style={history.resto}>
+            <Text style={history.restoText}>Ayam Goreng Nelongso, Singosari</Text>
+            <Image
+              source={fork}
+              style={history.icon}
+            />
+          </View>
+        </View>
+        <View style={history.card}>
+          <View style={history.resto}>
+            <Text style={history.restoText}>Ayam Goreng Nelongso, Singosari</Text>
+            <Image
+              source={fork}
+              style={history.icon}
+            />
+          </View>
+        </View>
+      </ScrollView>
+    </View>
+  )
+}
+
+const NavigationButton = () => {
+  return(
+  <View style={navigationbutton.container}>
+    <View style={navigationbutton.icon}>
+      <Home3 color={colors.AmericanGreen()} variant='Bold' size={35} />
+      <Text style={navigationbutton.homeText}>Beranda</Text>
+    </View>
+    <View style={navigationbutton.icon}>
+      <DiscountShape color={colors.AmericanGreen()} variant='Bold' size={35} />
+      <Text style={navigationbutton.promoText}>Promo</Text>
+    </View>
+    <View style={{...navigationbutton.icon, paddingLeft:25}}>
+      <Receipt1 color={colors.AmericanGreen()} variant='Bold' size={35} />
+      <Text style={navigationbutton.pesananText}>Pesanan</Text>
+    </View>
+    <View style={navigationbutton.icon}>
+      <MessageText1 color={colors.AmericanGreen()} variant='Bold' size={35} />
+      <Text style={navigationbutton.chatText}>Chat</Text>
+    </View>
+  </View>
+  )
+}
+
+const navigationbutton = StyleSheet.create({
+  container: {
+    flex:1,
+    paddingVertical: 25,
+    paddingHorizontal: 25,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  icon: {
+    // left:10,
+    paddingHorizontal: 15,
+  },
+  homeText:{
+    fontFamily: fontType['Pjs-Bold'],
+    fontSize: 15,
+    color: colors.black(),
+    left: -12,
+  },
+  promoText:{
+    fontFamily: fontType['Pjs-Bold'],
+    fontSize: 15,
+    color: colors.black(),
+    left: -7,
+  },
+  pesananText:{
+    fontFamily: fontType['Pjs-Bold'],
+    fontSize: 15,
+    color: colors.black(),
+    left: -12,
+  },
+  chatText:{
+    fontFamily: fontType['Pjs-Bold'],
+    fontSize: 15,
+    color: colors.black(),
+    // left: 5,
+  },
+})
+
+const history = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.white(),
+    paddingHorizontal: 15,
+  },
+  resto: {
+    width: 250,
+    height: 80,
+    borderWidth: 1,
+    borderRadius: 20,
+    borderColor: colors.black(0.4),
+    flexDirection: 'row',
+    justifyContent: 'center',
+    padding: 15,
+  },
+  icon: {
+    width: 25,
+    height: 25,
+    top: 10,
+    left: -2,
+  },
+  restoText: {
+    // width: 180,
+    // heigt: 80,
+    fontFamily: fontType['Pjs-Bold'],
+    fontSize: 16,
+    color: colors.black(),
+    marginHorizontal: 10,
+  }
+})
+
 const home = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.white(),
-    paddingHorizontal: 6,
   },
   rowContainer: {
     flexDirection: 'row',
@@ -184,19 +310,26 @@ const home = StyleSheet.create({
     fontSize: 16,
     color: colors.black(),
     top: 12,
-    // left: -10,
+    marginHorizontal: -10,
   },
   goTransitText: {
     fontFamily: fontType['Pjs-Regular'],
     fontSize: 16,
     color: colors.black(),
     top: 12,
+    marginHorizontal: -4,
   },
   goMoreText: {
     fontFamily: fontType['Pjs-Regular'],
     fontSize: 16,
     color: colors.black(),
     top: 12,
+    left: 4,
+  },
+  more: {
+    width: 65,
+    height: 65,
+    marginHorizontal: 15,
   },
 });
 
@@ -237,6 +370,19 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 320,
   },
+  navigationbutton: {
+    flex: 1,
+    width: 'auto',
+    height: 100,
+    shadowColor: 'gray',
+    shadowOffset: {
+      width: 0,
+      height: 10, // Meningkatkan nilai ini akan membuat bayangan lebih terlihat
+    },
+    shadowOpacity: 1, // Meningkatkan nilai ini akan membuat bayangan lebih tebal
+    shadowRadius: 10, // Meningkatkan nilai ini akan membuat bayangan lebih menyebar
+    elevation: 5,
+  }
 })
 
 const payment = StyleSheet.create({

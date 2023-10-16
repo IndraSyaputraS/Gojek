@@ -7,7 +7,8 @@ import shopping from './shopping-basket.png'
 import spoon from './spoon.png'
 import train from './train.png'
 import car from './hatchback.png'
+import fork from './cutlery.png'
 
 export {
-    sprite, box, bill, more, scooter, shopping, spoon, train, car
+    sprite, box, bill, more, scooter, shopping, spoon, train, car, fork
 }
